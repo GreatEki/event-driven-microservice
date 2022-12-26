@@ -9,18 +9,18 @@ export const addCommentController = async (req, res) => {
 
     await service.emitEventToEventBus({
       type: "CommentAdded",
-      data: comment,
+      data: { ...comment, postId },
     });
 
     return res.json({
       success: true,
-      data: { ...comment, postId },
+      data: comment,
     });
   } catch (err) {
     return res.status(err.statusCode || 500).json({
       success: false,
       status: err.status || "Server error",
-      message: err.message,
+      message: err.response?.data,
     });
   }
 };
@@ -53,7 +53,7 @@ export const handlePostRequestFromEventBus = async (req, res) => {
     return res.status(err.statusCode || 500).json({
       success: false,
       status: err.status || "Server error",
-      message: err.message,
+      message: err.response?.data,
     });
   }
 };
