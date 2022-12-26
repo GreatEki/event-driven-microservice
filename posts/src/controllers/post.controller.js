@@ -40,3 +40,19 @@ export const getPostsController = (req, res) => {
     });
   }
 };
+
+export const handlePostRequestFromEventBus = async (req, res) => {
+  try {
+    console.log("Received event", req.body.type);
+
+    return res.status(200).json({
+      status: "OK",
+    });
+  } catch (err) {
+    return res.status(err.statusCode || 500).json({
+      success: false,
+      status: err.status || "Server error",
+      message: err.message,
+    });
+  }
+};

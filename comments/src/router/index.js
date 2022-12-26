@@ -8,4 +8,6 @@ router
   .post(controller.addCommentController)
   .get(controller.getCommentsOnPost);
 
+router.route("/events").post(controller.handlePostRequestFromEventBus);
+
 export default router;

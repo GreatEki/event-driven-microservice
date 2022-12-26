@@ -8,4 +8,6 @@ router
   .post(postController.createPostController)
   .get(postController.getPostsController);
 
+router.route("/events").post(postController.handlePostRequestFromEventBus);
+
 export default router;

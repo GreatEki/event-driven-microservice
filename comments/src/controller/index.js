@@ -7,7 +7,10 @@ export const addCommentController = async (req, res) => {
 
     const comment = service.addCommentOnPost({ postId, content });
 
-    await service.postRequestToEventBus({ type: "PostCreated", data: comment });
+    await service.emitEventToEventBus({
+      type: "CommentAdded",
+      data: comment,
+    });
 
     return res.json({
       success: true,
@@ -32,6 +35,20 @@ export const getCommentsOnPost = async (req, res) => {
       success: true,
       data: comments,
     });
+  } catch (err) {
+    return res.status(err.statusCode || 500).json({
+      success: false,
+      status: err.status || "Server error",
+      message: err.message,
+    });
+  }
+};
+
+export const handlePostRequestFromEventBus = async (req, res) => {
+  try {
+    console.log("Received events", req.body.type);
+
+    return res.status(200).json({ status: "OK" });
   } catch (err) {
     return res.status(err.statusCode || 500).json({
       success: false,

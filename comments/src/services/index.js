@@ -21,7 +21,7 @@ export const getCommentsOnPost = (postId) => {
   return commentsDB[postId];
 };
 
-export const postRequestToEventBus = async ({ type, data }) => {
+export const emitEventToEventBus = async ({ type, data }) => {
   const result = await axios.post(`${process.env.EVENT_BUS_SERVICE}`, {
     type,
     data,

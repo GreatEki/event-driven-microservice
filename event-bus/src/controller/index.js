@@ -3,10 +3,9 @@ import axios from "axios";
 export const handlePostEvents = async (req, res) => {
   try {
     const event = req.body;
-    console.log(event);
 
-    // await axios.post(`${process.env.POST_SERVICE}/events`, event);
-    // await axios.post(`${process.env.COMMENT_SERVICE}/events`, event);
+    await axios.post(`http://localhost:4000/api/post/events`, event);
+    await axios.post(`http://localhost:4001/api/comment/events`, event);
 
     res.send({ status: "OK" });
   } catch (err) {
