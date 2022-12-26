@@ -7,9 +7,11 @@ export const addCommentController = async (req, res) => {
 
     const comment = service.addCommentOnPost({ postId, content });
 
+    await service.postRequestToEventBus({ type: "PostCreated", data: comment });
+
     return res.json({
       success: true,
-      data: comment,
+      data: { ...comment, postId },
     });
   } catch (err) {
     return res.status(err.statusCode || 500).json({

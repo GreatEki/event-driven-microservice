@@ -1,4 +1,5 @@
 import { randomBytes } from "crypto";
+import axios from "axios";
 
 const commentsDB = {};
 
@@ -18,4 +19,12 @@ export const addCommentOnPost = ({ postId, content }) => {
 
 export const getCommentsOnPost = (postId) => {
   return commentsDB[postId];
+};
+
+export const postRequestToEventBus = async ({ type, data }) => {
+  const result = await axios.post(`${process.env.EVENT_BUS_SERVICE}`, {
+    type,
+    data,
+  });
+  return result.data;
 };

@@ -5,7 +5,7 @@ export const handlePostEvents = async (req, res) => {
     const event = req.body;
     console.log(event);
 
-    await axios.post(`${process.env.POST_SERVICE}/events`, event);
+    // await axios.post(`${process.env.POST_SERVICE}/events`, event);
     // await axios.post(`${process.env.COMMENT_SERVICE}/events`, event);
 
     res.send({ status: "OK" });
