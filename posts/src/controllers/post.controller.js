@@ -1,10 +1,15 @@
 import * as postService from "../services/post.js";
 
-export const createPostController = (req, res) => {
+export const createPostController = async (req, res) => {
   try {
     const { content } = req.body;
 
     const createdPost = postService.createPost(content);
+
+    await postService.emitPostToEventBus({
+      type: "PostCreated",
+      data: createdPost,
+    });
 
     return res.json({
       success: true,
@@ -14,7 +19,7 @@ export const createPostController = (req, res) => {
     return res.status(err.statusCode || 500).json({
       success: false,
       status: err.status || "Server error",
-      message: err.message,
+      message: err,
     });
   }
 };

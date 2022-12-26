@@ -1,4 +1,5 @@
 import { randomBytes } from "crypto";
+import axios from "axios";
 
 const postsDB = [];
 
@@ -14,4 +15,12 @@ export const createPost = (post) => {
 
 export const getPosts = () => {
   return postsDB;
+};
+
+export const emitPostToEventBus = async ({ type, data }) => {
+  const result = await axios.post(`${process.env.EVENT_BUS_SERVICE}`, {
+    type,
+    data,
+  });
+  return result;
 };
