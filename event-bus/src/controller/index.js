@@ -1,12 +1,12 @@
 import axios from "axios";
-import config from "../config/config.js";
 
 export const handlePostEvents = async (req, res) => {
   try {
     const event = req.body;
+    console.log(event);
 
-    axios.post(`${config.POST_SERVICE}/events`, event);
-    axios.post(`${config.COMMENT_SERVICE}/events`, event);
+    await axios.post(`${process.env.POST_SERVICE}/events`, event);
+    // await axios.post(`${process.env.COMMENT_SERVICE}/events`, event);
 
     res.send({ status: "OK" });
   } catch (err) {
