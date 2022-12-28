@@ -1,7 +1,27 @@
+import axios from "axios";
+
 const posts = [];
 
 export const getPosts = async () => {
   return posts;
+};
+
+export const handleIncomingEvents = (type, data) => {
+  switch (type) {
+    case "PostCreated":
+      handlePostCreatedEvent(data);
+      break;
+    case "CommentAdded":
+      handleCommentAddedEvent(data);
+      break;
+    case "CommentUpdated":
+      handleCommentUpdatedEvent(data);
+    default:
+      // service.handlePostCreatedEvent(data);
+      break;
+  }
+
+  return;
 };
 
 export const handlePostCreatedEvent = (data) => {
@@ -30,4 +50,17 @@ export const handleCommentUpdatedEvent = (data) => {
   comment.content = content;
   comment.status = status;
   return comment;
+};
+
+export const getAllEventsFromEventBus = async () => {
+  try {
+    const result = await axios.get(`${process.env.EVENT_BUS_SERVICE}`);
+
+    for (let event of result.data) {
+      console.log("Processing event", event.type);
+      handleIncomingEvents(event.type, event.data);
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };

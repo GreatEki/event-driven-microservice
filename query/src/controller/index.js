@@ -5,19 +5,8 @@ export const handlePostEventCreatedController = async (req, res) => {
     const { type, data } = req.body;
 
     console.log(type);
-    switch (type) {
-      case "PostCreated":
-        service.handlePostCreatedEvent(data);
-        break;
-      case "CommentAdded":
-        service.handleCommentAddedEvent(data);
-        break;
-      case "CommentUpdated":
-        service.handleCommentUpdatedEvent(data);
-      default:
-        // service.handlePostCreatedEvent(data);
-        break;
-    }
+
+    service.handleIncomingEvents(type, data);
 
     return res.status(200).json({
       status: "OK",

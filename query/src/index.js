@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import router from "./router/index.js";
+import { getAllEventsFromEventBus } from "./service/index.js";
 
 const app = express();
 
@@ -18,4 +19,8 @@ app.use("/api/query", router);
 
 const PORT = process.env.PORT || 5001;
 
-app.listen(PORT, () => console.log(`Query service running on PORT ${PORT}`));
+app.listen(PORT, async () => {
+  console.log(`Query service running on PORT ${PORT}`);
+
+  await getAllEventsFromEventBus();
+});
