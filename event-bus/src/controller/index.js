@@ -7,6 +7,7 @@ export const handlePostEvents = async (req, res) => {
     await axios.post(`http://localhost:4000/api/post/events`, event);
     await axios.post(`http://localhost:4001/api/comment/events`, event);
     await axios.post(`http://localhost:5001/api/query/events`, event);
+    await axios.post(`http://localhost:4002/api/moderation/events`, event);
 
     res.send({ status: "OK" });
   } catch (err) {

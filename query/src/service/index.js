@@ -12,10 +12,10 @@ export const handlePostCreatedEvent = (data) => {
 };
 
 export const handleCommentAddedEvent = (data) => {
-  const { id, content, postId } = data;
+  const { id, content, postId, status } = data;
 
   const post = posts[postId];
 
-  post.comments.push({ id, content });
+  post.comments.push({ id, content, postId, status });
   // console.log(post);
 };

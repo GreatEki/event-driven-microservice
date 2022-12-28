@@ -8,7 +8,7 @@ export const addCommentOnPost = ({ postId, content }) => {
 
   const comments = commentsDB[postId] || [];
 
-  const newComment = { id: commentId, content };
+  const newComment = { id: commentId, postId, content, status: "pending" };
 
   comments.push(newComment);
 

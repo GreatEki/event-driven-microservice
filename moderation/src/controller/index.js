@@ -12,6 +12,8 @@ export const handlePostRequestFromEventBus = async (req, res) => {
         status,
       });
     }
+
+    return res.send({ status: "OK" });
   } catch (err) {
     return res.status(err.statusCode || 500).json({
       success: false,
