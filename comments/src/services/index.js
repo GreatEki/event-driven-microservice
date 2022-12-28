@@ -28,3 +28,15 @@ export const emitEventToEventBus = async ({ type, data }) => {
   });
   return result.data;
 };
+
+export const handleCommentModeratedEvent = (data) => {
+  const { id, postId, content, status } = data;
+
+  const comments = commentsDB[postId];
+
+  const theComment = comments.find((comment) => comment.id === id);
+
+  theComment.status = status;
+
+  return theComment;
+};

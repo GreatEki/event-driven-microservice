@@ -3,13 +3,14 @@ import * as services from "../services/index.js";
 export const handlePostRequestFromEventBus = async (req, res) => {
   try {
     const { type, data } = req.body;
+    console.log("Received event", type);
 
     if (type === "CommentAdded") {
+      console.log("handling comment added event");
       const status = data.content?.includes("orange") ? "rejected" : "approved";
       await services.emitEventToEventBus({
         type: "CommentModerated",
-        ...data,
-        status,
+        data: { ...data, status },
       });
     }
 

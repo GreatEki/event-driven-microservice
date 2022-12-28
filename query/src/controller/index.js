@@ -13,7 +13,7 @@ export const handlePostEventCreatedController = async (req, res) => {
         service.handleCommentAddedEvent(data);
         break;
       default:
-        service.handlePostCreatedEvent(data);
+        // service.handlePostCreatedEvent(data);
         break;
     }
 

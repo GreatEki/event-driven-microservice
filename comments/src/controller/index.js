@@ -48,6 +48,17 @@ export const handlePostRequestFromEventBus = async (req, res) => {
   try {
     console.log("Received events", req.body.type);
 
+    const { type, data } = req.body;
+
+    if (type === "CommentModerated") {
+      const comment = service.handleCommentModeratedEvent(data);
+
+      await service.emitEventToEventBus({
+        type: "CommentUpdated",
+        data: comment,
+      });
+    }
+
     return res.status(200).json({ status: "OK" });
   } catch (err) {
     return res.status(err.statusCode || 500).json({
