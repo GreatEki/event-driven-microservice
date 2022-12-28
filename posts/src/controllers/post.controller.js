@@ -19,7 +19,7 @@ export const createPostController = async (req, res) => {
     return res.status(err.statusCode || 500).json({
       success: false,
       status: err.status || "Server error",
-      message: err?.response?.data,
+      message: err?.response?.data || err.message,
     });
   }
 };
@@ -52,7 +52,7 @@ export const handlePostRequestFromEventBus = async (req, res) => {
     return res.status(err.statusCode || 500).json({
       success: false,
       status: err.status || "Server error",
-      message: err.message,
+      message: err.response?.data,
     });
   }
 };

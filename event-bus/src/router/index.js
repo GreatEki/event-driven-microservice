@@ -3,6 +3,9 @@ import * as controller from "../controller/index.js";
 
 const router = Router();
 
-router.route("/").post(controller.handlePostEvents);
+router
+  .route("/")
+  .post(controller.handlePostEvents)
+  .get(controller.handleGetEvents);
 
 export default router;
