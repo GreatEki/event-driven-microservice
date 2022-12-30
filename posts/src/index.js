@@ -18,6 +18,6 @@ const PORT = process.env.PORT || 4000;
 
 app.use("/api/post", router);
 
-app.listen(PORT, () =>
-  console.log(`Post microservice running on PORT ${PORT}`)
-);
+app.listen(PORT, () => {
+  console.log(`Post microservice running on PORT ${PORT}`);
+});

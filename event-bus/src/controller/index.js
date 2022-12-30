@@ -8,10 +8,10 @@ export const handlePostEvents = async (req, res) => {
 
     eventsStore.push(event);
 
-    await axios.post(`http://localhost:4000/api/post/events`, event);
-    await axios.post(`http://localhost:4001/api/comment/events`, event);
-    await axios.post(`http://localhost:4002/api/moderation/events`, event);
-    await axios.post(`http://localhost:5001/api/query/events`, event);
+    await axios.post(`${process.env.POST_SERVICE}/events`, event);
+    await axios.post(`${process.env.COMMENT_SERVICE}/events`, event);
+    await axios.post(`${process.env.MODERATION_SERVICE}/events`, event);
+    await axios.post(`${process.env.QUERY_SERVICE}/events`, event);
 
     res.send({ status: "OK" });
   } catch (err) {
