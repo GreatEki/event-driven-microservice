@@ -5,4 +5,4 @@ metadata:
 spec:
   containers:
     - name: posts
-      image: greateki/posts:0.0.1
+      image: greateki/posts:latest
