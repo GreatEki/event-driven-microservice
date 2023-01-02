@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, "./config/config.env") });
 
 const PORT = process.env.PORT || 5000;
-app.use("/api/events", router);
+app.use("/events", router);
 
 app.listen(PORT, () => {
   console.log(`Event bus is running on PORT ${PORT}`);

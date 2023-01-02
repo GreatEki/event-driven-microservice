@@ -15,7 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, "./config/config.env") });
 
-app.use("/api/query", router);
+app.use("/query", router);
 
 const PORT = process.env.PORT || 5001;
 

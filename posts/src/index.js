@@ -16,7 +16,7 @@ dotenv.config({ path: path.resolve(__dirname, "./config/config.env") });
 
 const PORT = process.env.PORT || 4000;
 
-app.use("/api/post", router);
+app.use("/post", router);
 
 app.listen(PORT, () => {
   console.log(`Post microservice running on PORT ${PORT}`);
