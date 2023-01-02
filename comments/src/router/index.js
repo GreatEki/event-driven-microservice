@@ -4,7 +4,7 @@ import * as controller from "../controller/index.js";
 const router = Router();
 
 router
-  .route("/post/:postId/comments")
+  .route("/post/:postId/comments/add")
   .post(controller.addCommentController)
   .get(controller.getCommentsOnPost);
 
